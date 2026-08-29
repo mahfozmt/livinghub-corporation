@@ -113,6 +113,14 @@ export const EntitiesSection: React.FC = () => {
                     <span className="text-[11px] font-mono text-[#0062eb] font-semibold">livinghub.tech/erp</span>
                   </div>
 
+                  <div className="p-4 rounded-xl bg-white border border-slate-200 mb-4 flex items-center justify-center shadow-inner">
+                    <img 
+                      src="./Livinghub final logo.png" 
+                      alt="Livinghub Technologies Logo" 
+                      className="h-12 object-contain"
+                    />
+                  </div>
+
                   <div className="space-y-3">
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
                       <span className="text-xs text-slate-700 font-medium">Treasurer Workload Reduction</span>
@@ -331,11 +339,16 @@ export const EntitiesSection: React.FC = () => {
                     <span className="text-[11px] font-mono text-amber-700 font-semibold">livinghublifestyle.com</span>
                   </div>
 
-                  <div className="text-center py-6 px-4 rounded-xl bg-white border border-slate-200 mb-4 shadow-inner">
-                    <div className="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3">
-                      <ShoppingBag className="w-6 h-6" />
-                    </div>
-                    <h4 className="text-base font-bold text-[#0a1936] mb-1">E-Commerce in Active Development</h4>
+                  <div className="p-4 rounded-xl bg-white border border-slate-200 mb-4 flex items-center justify-center shadow-inner">
+                    <img 
+                      src="./livinghub lifestyle logo.png" 
+                      alt="Livinghub Lifestyle Logo" 
+                      className="h-14 object-contain"
+                    />
+                  </div>
+
+                  <div className="text-center py-4 px-4 rounded-xl bg-slate-50 border border-slate-200/80 mb-4">
+                    <h4 className="text-sm font-bold text-[#0a1936] mb-1">E-Commerce in Active Development</h4>
                     <p className="text-xs text-slate-500 max-w-xs mx-auto">
                       Preparing a premier catalog of lifestyle goods, modern living utilities, and smart gadgets.
                     </p>

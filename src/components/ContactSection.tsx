@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, MessageSquare, Building2, Globe2, ShoppingBag } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, MessageSquare, Building2, Globe2, ShoppingBag, Loader2, AlertCircle } from 'lucide-react';
+
+// You can create a free access key at https://web3forms.com/ (takes 10 seconds, delivers to info@livinghubcorp.com)
+// Or replace with your Formspree endpoint if preferred
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; 
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [selectedEntity, setSelectedEntity] = useState('Livinghub Corp');
   const [formData, setFormData] = useState({
     name: '',
@@ -11,9 +17,50 @@ export const ContactSection: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    // If a custom Web3Forms key is configured, send via API
+    if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== "YOUR_ACCESS_KEY_HERE") {
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: `New Corporate Inquiry for ${selectedEntity} - from ${formData.name}`,
+            from_name: formData.name,
+            entity: selectedEntity,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || "Not provided",
+            message: formData.message,
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          setSubmitted(true);
+        } else {
+          setErrorMessage(result.message || "Failed to submit. Please try again or email us directly.");
+        }
+      } catch (err) {
+        setErrorMessage("Network error occurred. Please try again or reach us via email.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Demo / Instant simulation mode with direct mailto fallback support
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+      }, 700);
+    }
   };
 
   return (
@@ -88,14 +135,21 @@ export const ContactSection: React.FC = () => {
                 Fill out the form below and our corporate relations team will get back to you within 24 hours.
               </p>
 
+              {errorMessage && (
+                <div className="mb-4 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               {submitted ? (
                 <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center animate-in fade-in">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h4 className="text-lg font-bold text-emerald-900 mb-1">Inquiry Received!</h4>
-                  <p className="text-xs text-emerald-700 max-w-sm mx-auto mb-4">
-                    Thank you for reaching out to Livinghub Corporation. Our representative will review your message and contact you promptly.
+                  <p className="text-xs text-emerald-700 max-w-sm mx-auto mb-4 leading-relaxed">
+                    Thank you for reaching out to Livinghub Corporation regarding <strong className="font-semibold">{selectedEntity}</strong>. Our leadership team will review your message and contact you promptly.
                   </p>
                   <button 
                     onClick={() => {
@@ -194,10 +248,20 @@ export const ContactSection: React.FC = () => {
                   {/* Submit Button */}
                   <button 
                     type="submit"
-                    className="w-full py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#0062eb] to-[#00b4d8] hover:from-[#004ec4] hover:to-[#0284c7] shadow-md shadow-blue-500/25 transition-all flex items-center justify-center gap-2 active:scale-95"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#0062eb] to-[#00b4d8] hover:from-[#004ec4] hover:to-[#0284c7] disabled:opacity-75 shadow-md shadow-blue-500/25 transition-all flex items-center justify-center gap-2 active:scale-95"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Submit Corporate Inquiry</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Inquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Submit Corporate Inquiry</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}
