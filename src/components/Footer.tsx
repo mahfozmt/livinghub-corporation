@@ -1,7 +1,10 @@
 import React from 'react';
-import { Building2, Globe2, ShoppingBag, ExternalLink, ArrowUp, Mail, MapPin } from 'lucide-react';
+import { Building2, Globe2, ShoppingBag, ExternalLink, ArrowUp, Mail } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -22,18 +25,18 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-slate-300 leading-relaxed text-xs max-w-sm pt-2">
-              Incubating, financing, and scaling innovative technology platforms across smart housing society management, international telecom data, and modern lifestyle retail.
+              {t('footer.corpBio')}
             </p>
 
             <div className="pt-2 text-[11px] text-slate-400">
-              Corporate Headquarters: Dhaka, Bangladesh (Global Digital Operations).
+              {t('footer.hq')}
             </div>
           </div>
 
           {/* Column 3: Subsidiary Ventures */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 text-[#00b4d8]">
-              Operating Ventures
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-[#00b4d8]">
+              {t('footer.venturesTitle')}
             </h4>
             <ul className="space-y-2.5">
               <li>
@@ -77,29 +80,29 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Quick Links */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 text-slate-200">
-              Corporate Links
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-slate-200">
+              {t('footer.linksTitle')}
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="#about" className="hover:text-white transition-colors">About the Corporation</a>
+                <a href="#about" className="hover:text-white transition-colors">{t('footer.aboutLink')}</a>
               </li>
               <li>
-                <a href="#entities" className="hover:text-white transition-colors">Ventures Portfolio</a>
+                <a href="#entities" className="hover:text-white transition-colors">{t('footer.portfolioLink')}</a>
               </li>
               <li>
-                <a href="#values" className="hover:text-white transition-colors">Guiding Principles</a>
+                <a href="#values" className="hover:text-white transition-colors">{t('footer.principlesLink')}</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">Leadership &amp; Inquiries</a>
+                <a href="#contact" className="hover:text-white transition-colors">{t('footer.inquiriesLink')}</a>
               </li>
             </ul>
           </div>
 
           {/* Column 5: Direct Channels */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 text-slate-200">
-              Contact Channels
+            <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-slate-200">
+              {t('footer.contactTitle')}
             </h4>
             <ul className="space-y-2.5">
               <li className="flex items-center gap-2 text-slate-300">
@@ -116,7 +119,7 @@ export const Footer: React.FC = () => {
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold border border-slate-700 transition-colors"
                 >
                   <ArrowUp className="w-3.5 h-3.5" />
-                  <span>Back to Top</span>
+                  <span>{t('footer.backToTop')}</span>
                 </button>
               </li>
             </ul>
@@ -127,12 +130,12 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
           <div>
-            &copy; {new Date().getFullYear()} Livinghub Corporation. All rights reserved.
+            &copy; {new Date().getFullYear()} Livinghub Corporation. {t('footer.copyright')}
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-slate-200 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-slate-200 transition-colors">{t('footer.privacy')}</a>
             <span>&bull;</span>
-            <a href="#" className="hover:text-slate-200 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-slate-200 transition-colors">{t('footer.terms')}</a>
             <span>&bull;</span>
             <a href="https://www.livinghub.tech/" target="_blank" rel="noopener noreferrer" className="text-[#00b4d8] hover:underline">livinghub.tech</a>
           </div>

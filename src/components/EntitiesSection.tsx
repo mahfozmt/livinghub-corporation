@@ -10,8 +10,10 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { TechFeaturesModal } from './TechFeaturesModal';
+import { useLanguage } from '../context/LanguageContext';
 
 export const EntitiesSection: React.FC = () => {
+  const { t } = useLanguage();
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
 
   return (
@@ -23,13 +25,13 @@ export const EntitiesSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#0062eb] text-xs font-bold uppercase tracking-wider mb-4">
             <Layers className="w-3.5 h-3.5 text-[#0062eb]" />
-            <span>Core Business Portfolio</span>
+            <span>{t('entities.badge')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0a1936] tracking-tight mb-4">
-            Our Three Operating <span className="text-[#0062eb]">Ventures</span>
+            {t('entities.title')} <span className="text-[#0062eb]">{t('entities.titleHighlight')}</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Livinghub Corporation steers specialized high-growth operating brands across property technology, international telecommunications, and digital consumer commerce.
+            {t('entities.subtitle')}
           </p>
         </div>
 
@@ -43,40 +45,40 @@ export const EntitiesSection: React.FC = () => {
               <div className="lg:col-span-7">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="px-3.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-[#0062eb] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5" /> PropTech &amp; SaaS
+                    <Building2 className="w-3.5 h-3.5" /> {t('tech.badge')}
                   </span>
                   <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" /> Live Enterprise Platform
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" /> {t('tech.live')}
                   </span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a1936] mb-3 leading-tight">
-                  Livinghub Technologies
+                  {t('tech.title')}
                 </h3>
                 <p className="text-[#0062eb] text-sm sm:text-base font-semibold mb-4">
-                  Next-Gen Smart Housing Society &amp; Automated Building Management Platform
+                  {t('tech.tagline')}
                 </p>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                  Transforming manual society accounting and building administration into an automated, 100% transparent digital ecosystem. Designed specifically for treasurers, committee members, and residents to eliminate spreadsheets, billing disputes, and paper receipts.
+                  {t('tech.desc')}
                 </p>
 
                 {/* Key feature pills */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-[#0062eb] shrink-0 mt-0.5" />
-                    <span><strong>Smart Treasurer Dashboard</strong>: Real-time Cash, Receivables &amp; Payables.</span>
+                    <span><strong>{t('tech.f1Title')}</strong>: {t('tech.f1Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-[#0062eb] shrink-0 mt-0.5" />
-                    <span><strong>Automatic Recurring Billing</strong>: Zero-touch monthly service charges.</span>
+                    <span><strong>{t('tech.f2Title')}</strong>: {t('tech.f2Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-[#0062eb] shrink-0 mt-0.5" />
-                    <span><strong>At-Actual Expense Split</strong>: Common electricity, water &amp; fuel split.</span>
+                    <span><strong>{t('tech.f3Title')}</strong>: {t('tech.f3Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-[#0062eb] shrink-0 mt-0.5" />
-                    <span><strong>Automated Police Form</strong>: 1-click digital tenant verification generation.</span>
+                    <span><strong>{t('tech.f4Title')}</strong>: {t('tech.f4Desc')}</span>
                   </div>
                 </div>
 
@@ -88,14 +90,14 @@ export const EntitiesSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-6 py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#0062eb] to-[#00b4d8] hover:from-[#004ec4] hover:to-[#0284c7] shadow-md shadow-blue-500/20 transition-all flex items-center gap-2 group active:scale-95"
                   >
-                    <span>Visit livinghub.tech</span>
+                    <span>{t('tech.btnVisit')}</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                   <button 
                     onClick={() => setIsTechModalOpen(true)}
                     className="px-6 py-3.5 rounded-xl text-xs font-bold text-[#0062eb] bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all flex items-center gap-2"
                   >
-                    <span>View All 14 PDF Features</span>
+                    <span>{t('tech.btnPdf')}</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -123,27 +125,27 @@ export const EntitiesSection: React.FC = () => {
 
                   <div className="space-y-3">
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Treasurer Workload Reduction</span>
-                      <span className="text-xs font-bold text-[#0062eb]">~80% Saved</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('tech.stat1Label')}</span>
+                      <span className="text-xs font-bold text-[#0062eb]">{t('tech.stat1Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Financial Transparency</span>
-                      <span className="text-xs font-bold text-emerald-600">100% Real-Time</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('tech.stat2Label')}</span>
+                      <span className="text-xs font-bold text-emerald-600">{t('tech.stat2Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Billing Dispute Elimination</span>
-                      <span className="text-xs font-bold text-[#0062eb]">1-Click Auto Due Alerts</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('tech.stat3Label')}</span>
+                      <span className="text-xs font-bold text-[#0062eb]">{t('tech.stat3Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Document Vault</span>
-                      <span className="text-xs font-bold text-indigo-600">Holding Tax, Licenses &amp; Dues</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('tech.stat4Label')}</span>
+                      <span className="text-xs font-bold text-indigo-600">{t('tech.stat4Val')}</span>
                     </div>
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
-                    <span>Deployed Platform</span>
+                    <span>{t('tech.statFooter')}</span>
                     <a href="https://www.livinghub.tech/" target="_blank" rel="noopener noreferrer" className="text-[#0062eb] font-bold hover:underline flex items-center gap-1">
-                      Explore Live Demo <ArrowUpRight className="w-3 h-3" />
+                      {t('tech.statDemo')} <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
                 </div>
@@ -162,40 +164,40 @@ export const EntitiesSection: React.FC = () => {
               <div className="lg:col-span-7">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="px-3.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    <Globe2 className="w-3.5 h-3.5" /> International Telecom
+                    <Globe2 className="w-3.5 h-3.5" /> {t('esgn.badge')}
                   </span>
                   <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" /> Live Global Platform
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" /> {t('esgn.live')}
                   </span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a1936] mb-3 leading-tight">
-                  ESGN (E SIM Global Networks)
+                  {t('esgn.title')}
                 </h3>
                 <p className="text-emerald-600 text-sm sm:text-base font-semibold mb-4">
-                  Borderless High-Speed Travel Data &amp; Digital SIM Connectivity Across 150+ Countries
+                  {t('esgn.tagline')}
                 </p>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                  ESGN provides international travelers, frequent flyers, and global enterprises with instant, prepaid high-speed 4G/5G mobile connectivity. Say goodbye to physical SIM cards, airport queues, and exorbitant roaming fees.
+                  {t('esgn.desc')}
                 </p>
 
                 {/* Key feature pills */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span><strong>Instant QR Activation</strong>: Delivered via email in seconds.</span>
+                    <span><strong>{t('esgn.f1Title')}</strong>: {t('esgn.f1Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span><strong>150+ Global Destinations</strong>: Seamless local tier-1 network access.</span>
+                    <span><strong>{t('esgn.f2Title')}</strong>: {t('esgn.f2Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span><strong>Zero Roaming Shock</strong>: Transparent prepaid pricing with no hidden fees.</span>
+                    <span><strong>{t('esgn.f3Title')}</strong>: {t('esgn.f3Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span><strong>Multi-Carrier Reliability</strong>: Auto-switches to the strongest local signal.</span>
+                    <span><strong>{t('esgn.f4Title')}</strong>: {t('esgn.f4Desc')}</span>
                   </div>
                 </div>
 
@@ -207,7 +209,7 @@ export const EntitiesSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-6 py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-md shadow-emerald-500/20 transition-all flex items-center gap-2 group active:scale-95"
                   >
-                    <span>Visit esimglobalnetworks.com</span>
+                    <span>{t('esgn.btnVisit')}</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
@@ -235,23 +237,23 @@ export const EntitiesSection: React.FC = () => {
 
                   <div className="space-y-3">
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Global Coverage</span>
-                      <span className="text-xs font-bold text-emerald-600">150+ Countries &amp; Regions</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('esgn.stat1Label')}</span>
+                      <span className="text-xs font-bold text-emerald-600">{t('esgn.stat1Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Activation Time</span>
-                      <span className="text-xs font-bold text-emerald-600">Instant Under 60 Seconds</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('esgn.stat2Label')}</span>
+                      <span className="text-xs font-bold text-emerald-600">{t('esgn.stat2Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Hardware Support</span>
-                      <span className="text-xs font-bold text-teal-700">iOS, Android &amp; eSIM Tablets</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('esgn.stat3Label')}</span>
+                      <span className="text-xs font-bold text-teal-700">{t('esgn.stat3Val')}</span>
                     </div>
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
-                    <span>Live eSIM Store</span>
+                    <span>{t('esgn.statFooter')}</span>
                     <a href="https://esimglobalnetworks.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline flex items-center gap-1">
-                      Browse Regional Plans <ArrowUpRight className="w-3 h-3" />
+                      {t('esgn.statBrowse')} <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
                 </div>
@@ -270,40 +272,40 @@ export const EntitiesSection: React.FC = () => {
               <div className="lg:col-span-7">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="px-3.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    <ShoppingBag className="w-3.5 h-3.5" /> Modern E-Commerce
+                    <ShoppingBag className="w-3.5 h-3.5" /> {t('lifestyle.badge')}
                   </span>
                   <span className="text-xs text-amber-700 font-bold px-2.5 py-0.5 rounded-full bg-amber-100/70 border border-amber-300">
-                    Upcoming Launch
+                    {t('lifestyle.upcoming')}
                   </span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a1936] mb-3 leading-tight">
-                  Livinghub Lifestyle
+                  {t('lifestyle.title')}
                 </h3>
                 <p className="text-amber-600 text-sm sm:text-base font-semibold mb-4">
-                  Curated E-Commerce &amp; Lifestyle Essentials for Modern Smart Living
+                  {t('lifestyle.tagline')}
                 </p>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-                  Livinghub Lifestyle is our upcoming digital retail venture, thoughtfully designed to bring premium lifestyle essentials, home automation accessories, and smart living everyday goods directly to consumer doorsteps.
+                  {t('lifestyle.desc')}
                 </p>
 
                 {/* Key feature pills */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>Curated Collections</strong>: Handpicked quality lifestyle products.</span>
+                    <span><strong>{t('lifestyle.f1Title')}</strong>: {t('lifestyle.f1Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>Smart Living Integration</strong>: Gadgets and accessories for modern homes.</span>
+                    <span><strong>{t('lifestyle.f2Title')}</strong>: {t('lifestyle.f2Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>Seamless Digital Checkout</strong>: Rapid fulfillment and responsive support.</span>
+                    <span><strong>{t('lifestyle.f3Title')}</strong>: {t('lifestyle.f3Desc')}</span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-slate-700">
                     <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span><strong>Community Synergy</strong>: Special privileges for LivingHub ecosystem users.</span>
+                    <span><strong>{t('lifestyle.f4Title')}</strong>: {t('lifestyle.f4Desc')}</span>
                   </div>
                 </div>
 
@@ -315,14 +317,14 @@ export const EntitiesSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="px-6 py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 shadow-md shadow-amber-500/20 transition-all flex items-center gap-2 group active:scale-95"
                   >
-                    <span>Visit livinghublifestyle.com</span>
+                    <span>{t('lifestyle.btnVisit')}</span>
                     <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                   <a 
                     href="#contact" 
                     className="px-6 py-3.5 rounded-xl text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-all"
                   >
-                    <span>Partnership &amp; Vendor Inquiry</span>
+                    <span>{t('lifestyle.btnInquiry')}</span>
                   </a>
                 </div>
               </div>
@@ -348,27 +350,27 @@ export const EntitiesSection: React.FC = () => {
                   </div>
 
                   <div className="text-center py-4 px-4 rounded-xl bg-slate-50 border border-slate-200/80 mb-4">
-                    <h4 className="text-sm font-bold text-[#0a1936] mb-1">E-Commerce in Active Development</h4>
+                    <h4 className="text-sm font-bold text-[#0a1936] mb-1">{t('lifestyle.boxTitle')}</h4>
                     <p className="text-xs text-slate-500 max-w-xs mx-auto">
-                      Preparing a premier catalog of lifestyle goods, modern living utilities, and smart gadgets.
+                      {t('lifestyle.boxDesc')}
                     </p>
                   </div>
 
                   <div className="space-y-3">
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Platform Stage</span>
-                      <span className="text-xs font-bold text-amber-700">Pre-Launch &amp; Vendor Onboarding</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('lifestyle.stat1Label')}</span>
+                      <span className="text-xs font-bold text-amber-700">{t('lifestyle.stat1Val')}</span>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
-                      <span className="text-xs text-slate-700 font-medium">Category Scope</span>
-                      <span className="text-xs font-bold text-[#0a1936]">Smart Living &amp; Lifestyle Essentials</span>
+                      <span className="text-xs text-slate-700 font-medium">{t('lifestyle.stat2Label')}</span>
+                      <span className="text-xs font-bold text-[#0a1936]">{t('lifestyle.stat2Val')}</span>
                     </div>
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
-                    <span>Reserved Domain</span>
+                    <span>{t('lifestyle.statFooter')}</span>
                     <a href="https://livinghublifestyle.com/" target="_blank" rel="noopener noreferrer" className="text-amber-600 font-bold hover:underline flex items-center gap-1">
-                      Visit Preview <ArrowUpRight className="w-3 h-3" />
+                      {t('lifestyle.statPreview')} <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
                 </div>

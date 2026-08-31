@@ -1,0 +1,449 @@
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+
+export type Language = 'en' | 'bn';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+export const translations = {
+  en: {
+    // Navbar
+    'nav.about': 'About Corp',
+    'nav.ventures': 'Our Ventures',
+    'nav.tech': 'Livinghub Tech',
+    'nav.esgn': 'ESGN',
+    'nav.lifestyle': 'Lifestyle',
+    'nav.values': 'Values',
+    'nav.getInTouch': 'Get in Touch',
+    'nav.aboutFull': 'About Corporation',
+    'nav.venturesFull': 'Our Ventures Portfolio',
+    'nav.techFull': 'Livinghub Technologies',
+    'nav.esgnFull': 'ESGN (E SIM Global Networks)',
+    'nav.lifestyleFull': 'Livinghub Lifestyle',
+    'nav.valuesFull': 'Corporate Values',
+    'nav.contactLeader': 'Contact Leadership',
+
+    // Hero
+    'hero.badge': 'Multi-Sector Technology & Commerce Holding',
+    'hero.title1': 'Pioneering',
+    'hero.titleSmartLiving': 'Smart Living',
+    'hero.titleGlobalTelecom': 'Global Telecom',
+    'hero.titleModernLifestyle': '& Modern Lifestyle',
+    'hero.description1': 'Livinghub Corporation',
+    'hero.description2': 'is the parent enterprise driving forward-looking subsidiaries in smart community automation, borderless digital telecom, and modern consumer commerce.',
+    'hero.ctaExplore': 'Explore Subsidiaries',
+    'hero.ctaAbout': 'About the Holding',
+    'hero.treeParent': 'Parent Holding Enterprise',
+    'hero.techBadge': 'SaaS & PropTech',
+    'hero.techTitle': 'Livinghub Technologies',
+    'hero.techDesc': 'Automated smart housing society & building management ERP for treasurers, residents, and security.',
+    'hero.techCta': 'Explore Tech Platform',
+    'hero.esgnBadge': 'Global Telecom',
+    'hero.esgnTitle': 'ESGN (eSIM Global)',
+    'hero.esgnDesc': 'Instant worldwide eSIM mobile data and roaming across 150+ countries without physical SIM cards.',
+    'hero.esgnCta': 'Discover Global eSIM',
+    'hero.lifestyleBadge': 'Upcoming E-Commerce',
+    'hero.lifestyleTitle': 'Livinghub Lifestyle',
+    'hero.lifestyleDesc': 'Curated everyday lifestyle essentials and smart living products designed for modern homes.',
+    'hero.lifestyleCta': 'Preview Brand Vision',
+
+    // Entities Section
+    'entities.badge': 'Core Business Portfolio',
+    'entities.title': 'Our Three Operating',
+    'entities.titleHighlight': 'Ventures',
+    'entities.subtitle': 'Livinghub Corporation steers specialized high-growth operating brands across property technology, international telecommunications, and digital consumer commerce.',
+
+    // Livinghub Tech Entity
+    'tech.badge': 'PropTech & SaaS',
+    'tech.live': 'Live Enterprise Platform',
+    'tech.title': 'Livinghub Technologies',
+    'tech.tagline': 'Next-Gen Smart Housing Society & Automated Building Management Platform',
+    'tech.desc': 'Transforming manual society accounting and building administration into an automated, 100% transparent digital ecosystem. Designed specifically for treasurers, committee members, and residents to eliminate spreadsheets, billing disputes, and paper receipts.',
+    'tech.f1Title': 'Smart Treasurer Dashboard',
+    'tech.f1Desc': 'Real-time Cash, Receivables & Payables.',
+    'tech.f2Title': 'Automatic Recurring Billing',
+    'tech.f2Desc': 'Zero-touch monthly service charges.',
+    'tech.f3Title': 'At-Actual Expense Split',
+    'tech.f3Desc': 'Common electricity, water & fuel split.',
+    'tech.f4Title': 'Automated Police Form',
+    'tech.f4Desc': '1-click digital tenant verification generation.',
+    'tech.btnVisit': 'Visit livinghub.tech',
+    'tech.btnPdf': 'View All 14 PDF Features',
+    'tech.stat1Label': 'Treasurer Workload Reduction',
+    'tech.stat1Val': '~80% Saved',
+    'tech.stat2Label': 'Financial Transparency',
+    'tech.stat2Val': '100% Real-Time',
+    'tech.stat3Label': 'Billing Dispute Elimination',
+    'tech.stat3Val': '1-Click Auto Due Alerts',
+    'tech.stat4Label': 'Document Vault',
+    'tech.stat4Val': 'Holding Tax, Licenses & Dues',
+    'tech.statFooter': 'Deployed Platform',
+    'tech.statDemo': 'Explore Live Demo',
+
+    // ESGN Entity
+    'esgn.badge': 'International Telecom',
+    'esgn.live': 'Live Global Platform',
+    'esgn.title': 'ESGN (E SIM Global Networks)',
+    'esgn.tagline': 'Borderless High-Speed Travel Data & Digital SIM Connectivity Across 150+ Countries',
+    'esgn.desc': 'ESGN provides international travelers, frequent flyers, and global enterprises with instant, prepaid high-speed 4G/5G mobile connectivity. Say goodbye to physical SIM cards, airport queues, and exorbitant roaming fees.',
+    'esgn.f1Title': 'Instant QR Activation',
+    'esgn.f1Desc': 'Delivered via email in seconds.',
+    'esgn.f2Title': '150+ Global Destinations',
+    'esgn.f2Desc': 'Seamless local tier-1 network access.',
+    'esgn.f3Title': 'Zero Roaming Shock',
+    'esgn.f3Desc': 'Transparent prepaid pricing with no hidden fees.',
+    'esgn.f4Title': 'Multi-Carrier Reliability',
+    'esgn.f4Desc': 'Auto-switches to the strongest local signal.',
+    'esgn.btnVisit': 'Visit esimglobalnetworks.com',
+    'esgn.stat1Label': 'Global Coverage',
+    'esgn.stat1Val': '150+ Countries & Regions',
+    'esgn.stat2Label': 'Activation Time',
+    'esgn.stat2Val': 'Instant Under 60 Seconds',
+    'esgn.stat3Label': 'Hardware Support',
+    'esgn.stat3Val': 'iOS, Android & eSIM Tablets',
+    'esgn.statFooter': 'Live eSIM Store',
+    'esgn.statBrowse': 'Browse Regional Plans',
+
+    // Lifestyle Entity
+    'lifestyle.badge': 'Modern E-Commerce',
+    'lifestyle.upcoming': 'Upcoming Launch',
+    'lifestyle.title': 'Livinghub Lifestyle',
+    'lifestyle.tagline': 'Curated E-Commerce & Lifestyle Essentials for Modern Smart Living',
+    'lifestyle.desc': 'Livinghub Lifestyle is our upcoming digital retail venture, thoughtfully designed to bring premium lifestyle essentials, home automation accessories, and smart living everyday goods directly to consumer doorsteps.',
+    'lifestyle.f1Title': 'Curated Collections',
+    'lifestyle.f1Desc': 'Handpicked quality lifestyle products.',
+    'lifestyle.f2Title': 'Smart Living Integration',
+    'lifestyle.f2Desc': 'Gadgets and accessories for modern homes.',
+    'lifestyle.f3Title': 'Seamless Digital Checkout',
+    'lifestyle.f3Desc': 'Rapid fulfillment and responsive support.',
+    'lifestyle.f4Title': 'Community Synergy',
+    'lifestyle.f4Desc': 'Special privileges for LivingHub ecosystem users.',
+    'lifestyle.btnVisit': 'Visit livinghublifestyle.com',
+    'lifestyle.btnInquiry': 'Partnership & Vendor Inquiry',
+    'lifestyle.boxTitle': 'E-Commerce in Active Development',
+    'lifestyle.boxDesc': 'Preparing a premier catalog of lifestyle goods, modern living utilities, and smart gadgets.',
+    'lifestyle.stat1Label': 'Platform Stage',
+    'lifestyle.stat1Val': 'Pre-Launch & Vendor Onboarding',
+    'lifestyle.stat2Label': 'Category Scope',
+    'lifestyle.stat2Val': 'Smart Living & Lifestyle Essentials',
+    'lifestyle.statFooter': 'Reserved Domain',
+    'lifestyle.statPreview': 'Visit Preview',
+
+    // About Section
+    'about.badge': 'Corporate Heritage & Vision',
+    'about.title': 'About',
+    'about.titleHighlight': 'Livinghub Corporation',
+    'about.subtitle': 'Livinghub Corporation was established to build, nurture, and scale technology-first enterprises that simplify daily living, remove global borders, and empower communities.',
+    'about.missionTitle': 'Our Corporate Mission',
+    'about.missionP1': 'To engineer and deliver accessible, robust, and world-class digital platforms across community property management, international roaming telecommunications, and high-quality lifestyle retail.',
+    'about.missionP2': 'We empower housing society administrators with effortless transparency, travelers with instant global connectivity, and consumers with thoughtfully curated lifestyle products.',
+    'about.visionTitle': 'Our Corporate Vision',
+    'about.visionP1': 'To be recognized as a versatile catalyst of innovation, building interconnected digital products that elevate day-to-day living standards and bridge global borders.',
+    'about.visionP2': 'By leveraging cloud infrastructure, automated billing, and seamless eSIM telecommunications, we establish a unified ecosystem for modern living.',
+    'about.pillarsHeader': 'How Our Ecosystem Creates Synergistic Value',
+    'about.p1Title': 'PropTech Infrastructure',
+    'about.p1Desc': 'Automating housing communities with financial transparency and smart operations.',
+    'about.p2Title': 'Global Roaming Cloud',
+    'about.p2Desc': 'Connecting people and smart IoT devices across 150+ countries with zero friction.',
+    'about.p3Title': 'Lifestyle Innovation',
+    'about.p3Desc': 'Enhancing modern homes with curated premium consumer goods and retail convenience.',
+
+    // Values Section
+    'values.badge': 'Guiding Principles',
+    'values.title': 'Our Core Corporate',
+    'values.titleHighlight': 'Values',
+    'values.subtitle': 'The fundamental standards that drive our product development, venture incubation, and customer interactions across all entities.',
+    'values.v1Title': 'Technological Excellence',
+    'values.v1Desc': 'We build intuitive, robust, and scalable software solutions designed to simplify complex multi-party operations.',
+    'values.v2Title': 'Financial Integrity & Transparency',
+    'values.v2Desc': 'Whether in society accounting or transparent eSIM rates, we stand firmly for zero hidden costs and total accountability.',
+    'values.v3Title': 'Customer-Centric Innovation',
+    'values.v3Desc': 'Our products solve real-world daily headaches, from tedious housing committee paperwork to stressful travel data searches.',
+    'values.v4Title': 'Sustainable Long-Term Growth',
+    'values.v4Desc': 'We build solid partnerships with clients, building associations, telecom operators, and vendors based on mutual trust.',
+
+    // Contact Section
+    'contact.badge': 'Connect With Us',
+    'contact.title': 'Get in Touch with',
+    'contact.titleHighlight': 'Leadership',
+    'contact.subtitle': 'Whether you are looking to deploy our Smart Society Management SaaS in your community, partner with ESGN for eSIM distribution, or collaborate with Livinghub Lifestyle, we would love to speak with you.',
+    'contact.emailHeader': 'Corporate & General Email',
+    'contact.supportText': 'Tech Platform Support:',
+    'contact.venturesHeader': 'Operating Ventures',
+    'contact.hqHeader': 'Corporate Headquarters',
+    'contact.hqName': 'Livinghub Corporation',
+    'contact.hqLoc': 'Dhaka, Bangladesh (Global Digital Operations)',
+    'contact.formTitle': 'Send an Inquiry or Proposal',
+    'contact.formSubtitle': 'Fill out the form below and our corporate relations team will get back to you within 24 hours.',
+    'contact.formTarget': 'Inquiry Target / Entity:',
+    'contact.nameLabel': 'Your Full Name *',
+    'contact.namePlaceholder': 'e.g. Mahfuzur Rahman',
+    'contact.phoneLabel': 'Contact Phone / WhatsApp',
+    'contact.phonePlaceholder': 'e.g. +880 1...',
+    'contact.emailLabel': 'Email Address *',
+    'contact.emailPlaceholder': 'e.g. name@company.com',
+    'contact.msgLabel': 'Your Message / Collaboration Proposal *',
+    'contact.msgPlaceholder': 'Tell us about your building society, enterprise eSIM requirements, or inquiry...',
+    'contact.btnSubmit': 'Submit Corporate Inquiry',
+    'contact.btnSending': 'Sending Inquiry...',
+    'contact.successTitle': 'Inquiry Received!',
+    'contact.successMsg': 'Thank you for reaching out to Livinghub Corporation regarding',
+    'contact.successMsgEnd': 'Our leadership team will review your message and contact you promptly.',
+    'contact.btnSendAnother': 'Send Another Inquiry',
+
+    // Footer
+    'footer.corpBio': 'Incubating, financing, and scaling innovative technology platforms across smart housing society management, international telecom data, and modern lifestyle retail.',
+    'footer.hq': 'Corporate Headquarters: Dhaka, Bangladesh (Global Digital Operations).',
+    'footer.venturesTitle': 'Operating Ventures',
+    'footer.linksTitle': 'Corporate Links',
+    'footer.contactTitle': 'Contact Channels',
+    'footer.aboutLink': 'About the Corporation',
+    'footer.portfolioLink': 'Ventures Portfolio',
+    'footer.principlesLink': 'Guiding Principles',
+    'footer.inquiriesLink': 'Leadership & Inquiries',
+    'footer.backToTop': 'Back to Top',
+    'footer.copyright': 'All rights reserved.',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms of Service',
+  },
+  bn: {
+    // Navbar
+    'nav.about': 'কর্পোরেশন সম্পর্কে',
+    'nav.ventures': 'আমাদের ভেঞ্চারস',
+    'nav.tech': 'লিভিংহাব টেক',
+    'nav.esgn': 'ইএসজিএন (ESGN)',
+    'nav.lifestyle': 'লাইফস্টাইল',
+    'nav.values': 'ভ্যালুস',
+    'nav.getInTouch': 'যোগাযোগ করুন',
+    'nav.aboutFull': 'কর্পোরেশন সম্পর্কে',
+    'nav.venturesFull': 'আমাদের ভেঞ্চার পোর্টফোলিও',
+    'nav.techFull': 'লিভিংহাব টেকনোলজিস',
+    'nav.esgnFull': 'ইএসজিএন (গ্লোবাল ই-সিম)',
+    'nav.lifestyleFull': 'লিভিংহাব লাইফস্টাইল',
+    'nav.valuesFull': 'কর্পোরেট ভ্যালুস',
+    'nav.contactLeader': 'লিডারশিপের সাথে যোগাযোগ',
+
+    // Hero
+    'hero.badge': 'মাল্টি-সেক্টর টেকনোলজি ও কমার্স হোল্ডিং',
+    'hero.title1': 'ইনোভেটিভ',
+    'hero.titleSmartLiving': 'স্মার্ট লিভিং',
+    'hero.titleGlobalTelecom': 'গ্লোবাল টেলিকম',
+    'hero.titleModernLifestyle': 'ও মডার্ন লাইফস্টাইল',
+    'hero.description1': 'লিভিংহাব কর্পোরেশন',
+    'hero.description2': 'একটি অগ্রগামী প্যারেন্ট এন্টারপ্রাইজ যা স্মার্ট কমিউনিটি অটোমেশন, বর্ডারলেস ডিজিটাল টেলিকম এবং মডার্ন কনজিউমার কমার্স নিয়ে কাজ করছে।',
+    'hero.ctaExplore': 'সাবসিডিয়ারিগুলো এক্সপ্লোর করুন',
+    'hero.ctaAbout': 'কর্পোরেশন সম্পর্কে জানুন',
+    'hero.treeParent': 'প্যারেন্ট হোল্ডিং এন্টারপ্রাইজ',
+    'hero.techBadge': 'SaaS ও প্রপটেক',
+    'hero.techTitle': 'লিভিংহাব টেকনোলজিস',
+    'hero.techDesc': 'ট্রেজারার, রেসিডেন্ট ও সিকিউরিটির জন্য অটোমেটেড স্মার্ট হাউজিং সোসাইটি এবং বিল্ডিং ম্যানেজমেন্ট ইআরপি।',
+    'hero.techCta': 'টেক প্ল্যাটফর্ম এক্সপ্লোর করুন',
+    'hero.esgnBadge': 'গ্লোবাল টেলিকম',
+    'hero.esgnTitle': 'ইএসজিএন (eSIM Global)',
+    'hero.esgnDesc': 'ফিজিক্যাল সিম কার্ড ছাড়াই ১৫০+ দেশে ইনস্ট্যান্ট ওয়ার্ল্ডওয়াইড ই-সিম মোবাইল ডেটা এবং রোমিং সুবিধা।',
+    'hero.esgnCta': 'গ্লোবাল ই-সিম এক্সপ্লোর করুন',
+    'hero.lifestyleBadge': 'আপকামিং ই-কমার্স',
+    'hero.lifestyleTitle': 'লিভিংহাব লাইফস্টাইল',
+    'hero.lifestyleDesc': 'মডার্ন ঘরের জন্য কিউরেটেড এভরিডে লাইফস্টাইল এসেনশিয়ালস এবং স্মার্ট লিভিং প্রোডাক্টস।',
+    'hero.lifestyleCta': 'ব্র্যান্ড ভিশন দেখুন',
+
+    // Entities Section
+    'entities.badge': 'কোর বিজনেস পোর্টফোলিও',
+    'entities.title': 'আমাদের তিনটি অপারেটিং',
+    'entities.titleHighlight': 'ভেঞ্চার',
+    'entities.subtitle': 'লিভিংহাব কর্পোরেশন প্রপার্টি টেকনোলজি, ইন্টারন্যাশনাল টেলিকমিউনিকেশন এবং ডিজিটাল কনজিউমার কমার্স সেক্টরে হাই-গ্রোথ অপারেটিং ব্র্যান্ডগুলো পরিচালনা করছে।',
+
+    // Livinghub Tech Entity
+    'tech.badge': 'প্রপটেক ও SaaS',
+    'tech.live': 'লাইভ এন্টারপ্রাইজ প্ল্যাটফর্ম',
+    'tech.title': 'লিভিংহাব টেকনোলজিস',
+    'tech.tagline': 'নেক্সট-জেন স্মার্ট হাউজিং সোসাইটি ও অটোমেটেড বিল্ডিং ম্যানেজমেন্ট প্ল্যাটফর্ম',
+    'tech.desc': 'ম্যানুয়াল সোসাইটি অ্যাকাউন্টিং এবং বিল্ডিং অ্যাডমিনিস্ট্রেশনকে ১০০% ট্রান্সপারেন্ট ডিজিটাল ইকোসিস্টেমে রূপান্তর। ট্রেজারার, রেসিডেন্ট ও কমিটির জন্য ডিজাইন করা—স্প্রেডশিট, বিলিং ঝামেলা এবং পেপার রিসিট থেকে মুক্তি।',
+    'tech.f1Title': 'স্মার্ট ট্রেজারার ড্যাশবোর্ড',
+    'tech.f1Desc': 'রিয়েল-টাইম ক্যাশ, রিসিভেবলস ও পেয়েবলস।',
+    'tech.f2Title': 'অটোমেটিক রিকারিং বিলিং',
+    'tech.f2Desc': 'জিরো-টাচ মাসিক সার্ভিস চার্জ বিল জেনারেশন ও ডেলিভারি।',
+    'tech.f3Title': 'অ্যাট-অ্যাকচুয়াল এক্সপেন্স স্প্লিট',
+    'tech.f3Desc': 'কমন ইলেকট্রিসিটি, পানি ও ফুয়েল বিলের সমবণ্টন।',
+    'tech.f4Title': 'অটোমেটেড পুলিশ ফরম',
+    'tech.f4Desc': '১-ক্লিকে ডিজিটাল টেন্যান্ট ভেরিফিকেশন জেনারেশন।',
+    'tech.btnVisit': 'livinghub.tech ভিজিট করুন',
+    'tech.btnPdf': '১৪টি ফিচারের পিডিএফ দেখুন',
+    'tech.stat1Label': 'ট্রেজারার ওয়ার্কলোড হ্রাস',
+    'tech.stat1Val': '~৮০% সময় সেভ',
+    'tech.stat2Label': 'ফিন্যান্সিয়াল ট্রান্সপারেন্সি',
+    'tech.stat2Val': '১০০% রিয়েল-টাইম',
+    'tech.stat3Label': 'বিলিং ডিসপিউট নিরসন',
+    'tech.stat3Val': '১-ক্লিক অটো ডিউ অ্যালার্ট',
+    'tech.stat4Label': 'ডকুমেন্ট ভল্ট',
+    'tech.stat4Val': 'হোল্ডিং ট্যাক্স, লাইসেন্স ও ডিউস',
+    'tech.statFooter': 'ডিপ্লয়েড প্ল্যাটফর্ম',
+    'tech.statDemo': 'লাইভ ডেমো এক্সপ্লোর করুন',
+
+    // ESGN Entity
+    'esgn.badge': 'ইন্টারন্যাশনাল টেলিকম',
+    'esgn.live': 'লাইভ গ্লোবাল প্ল্যাটফর্ম',
+    'esgn.title': 'ইএসজিএন (E SIM Global Networks)',
+    'esgn.tagline': '১৫০+ দেশে বর্ডারলেস হাই-স্পিড ট্রাভেল ডেটা ও ডিজিটাল ই-সিম কানেক্টিভিটি',
+    'esgn.desc': 'ইন্টারন্যাশনাল ট্রাভেলার, ফ্রিকোয়েন্ট ফ্লায়ার এবং গ্লোবাল এন্টারপ্রাইজগুলোর জন্য ইনস্ট্যান্ট প্রিপেইড হাই-স্পিড 4G/5G কানেক্টিভিটি। ফিজিক্যাল সিম কার্ড আর এক্সপেন্সিভ রোমিং ফিস থেকে মুক্তি।',
+    'esgn.f1Title': 'ইনস্ট্যান্ট কিউআর অ্যাক্টিভেশন',
+    'esgn.f1Desc': 'ইমেইলের মাধ্যমে সেকেন্ডের মধ্যে ডেলিভারি।',
+    'esgn.f2Title': '১৫০+ গ্লোবাল ডেস্টিনেশন',
+    'esgn.f2Desc': 'সিমালেস লোকাল টায়ার-১ নেটওয়ার্ক অ্যাক্সেস।',
+    'esgn.f3Title': 'জিরো রোমিং শক',
+    'esgn.f3Desc': 'কোনো হিডেন ফি ছাড়া ট্রান্সপারেন্ট প্রিপেইড প্রাইসিং।',
+    'esgn.f4Title': 'মাল্টি-ক্যারিয়ার রিলায়েন্স',
+    'esgn.f4Desc': 'শক্তিশালী লোকাল সিগন্যালে অটো-সুইচ।',
+    'esgn.btnVisit': 'esimglobalnetworks.com ভিজিট করুন',
+    'esgn.stat1Label': 'গ্লোবাল কভারেজ',
+    'esgn.stat1Val': '১৫০+ দেশ ও অঞ্চল',
+    'esgn.stat2Label': 'অ্যাক্টিভেশন টাইম',
+    'esgn.stat2Val': 'ইনস্ট্যান্ট (৬০ সেকেন্ডের নিচে)',
+    'esgn.stat3Label': 'হার্ডওয়্যার সাপোর্ট',
+    'esgn.stat3Val': 'iOS, Android ও ই-সিম ট্যাবলেট',
+    'esgn.statFooter': 'লাইভ ই-সিম স্টোর',
+    'esgn.statBrowse': 'রিজিওনাল প্ল্যানগুলো ব্রাউজ করুন',
+
+    // Lifestyle Entity
+    'lifestyle.badge': 'মডার্ন ই-কমার্স',
+    'lifestyle.upcoming': 'আপকামিং লঞ্চ',
+    'lifestyle.title': 'লিভিংহাব লাইফস্টাইল',
+    'lifestyle.tagline': 'মডার্ন স্মার্ট লিভিংয়ের জন্য কিউরেটেড ই-কমার্স ও লাইফস্টাইল এসেনশিয়ালস',
+    'lifestyle.desc': 'লিভিংহাব লাইফস্টাইল আমাদের আপকামিং ডিজিটাল রিটেল ভেঞ্চার, যা প্রিমিয়াম লাইফস্টাইল এসেনশিয়ালস, হোম অটোমেশন এক্সেসরিজ এবং স্মার্ট লিভিং প্রোডাক্ট সরাসরি কনজ্যুমারের দোরগোড়ায় পৌঁছে দেবে।',
+    'lifestyle.f1Title': 'কিউরেটেড কালেকশন',
+    'lifestyle.f1Desc': 'হ্যান্ডপিকড কোয়ালিটি লাইফস্টাইল প্রোডাক্টস।',
+    'lifestyle.f2Title': 'স্মার্ট লিভিং ইন্টিগ্রেশন',
+    'lifestyle.f2Desc': 'মডার্ন ঘরের জন্য গ্যাজেট ও অ্যাক্সেসরিজ।',
+    'lifestyle.f3Title': 'সিমলেস ডিজিটাল চেকআউট',
+    'lifestyle.f3Desc': 'র‍্যাপিড ফুলফিলমেন্ট এবং রেসপন্সিভ সাপোর্ট।',
+    'lifestyle.f4Title': 'কমিউনিটি সিনার্জি',
+    'lifestyle.f4Desc': 'লিভিংহাব ইকোসিস্টেম ইউজারদের জন্য স্পেশাল প্রিভিলেজ।',
+    'lifestyle.btnVisit': 'livinghublifestyle.com ভিজিট করুন',
+    'lifestyle.btnInquiry': 'পার্টনারশিপ ও ভেন্ডর ইনকোয়ারি',
+    'lifestyle.boxTitle': 'অ্যাক্টিভ ডেভেলপমেন্টে থাকা ই-কমার্স',
+    'lifestyle.boxDesc': 'লাইফস্টাইল গুডস, মডার্ন লিভিং ইউটিলিটি এবং স্মার্ট গ্যাজেটের প্রিমিয়ার ক্যাটালগ তৈরি করা হচ্ছে।',
+    'lifestyle.stat1Label': 'প্ল্যাটফর্ম স্টেজ',
+    'lifestyle.stat1Val': 'প্রি-লঞ্চ এবং ভেন্ডর অনবোর্ডিং',
+    'lifestyle.stat2Label': 'ক্যাটাগরি স্কোপ',
+    'lifestyle.stat2Val': 'স্মার্ট লিভিং এবং লাইফস্টাইল এসেনশিয়ালস',
+    'lifestyle.statFooter': 'রিজার্ভড ডোমেইন',
+    'lifestyle.statPreview': 'প্রিভিউ ভিজিট করুন',
+
+    // About Section
+    'about.badge': 'কর্পোরেট হেরিটেজ ও ভিশন',
+    'about.title': 'অ্যাবাউট',
+    'about.titleHighlight': 'লিভিংহাব কর্পোরেশন',
+    'about.subtitle': 'লিভিংহাব কর্পোরেশন প্রতিষ্ঠিত হয়েছে টেকনোলজি-ফার্স্ট এন্টারপ্রাইজ তৈরি এবং স্কেল করার জন্য, যা দৈনন্দিন জীবনকে সহজ করবে, গ্লোবাল বর্ডার দূর করবে এবং কমিউনিটিকে এমপাওয়ার করবে।',
+    'about.missionTitle': 'আমাদের কর্পোরেট মিশন',
+    'about.missionP1': 'কমিউনিটি প্রপার্টি ম্যানেজমেন্ট, ইন্টারন্যাশনাল রোমিং টেলিকমিউনিকেশন এবং হাই-কোয়ালিটি লাইফস্টাইল রিটেলে অ্যাক্সেসিবল এবং ওয়ার্ল্ড-ক্লাস ডিজিটাল প্ল্যাটফর্ম তৈরি ও ডেলিভার করা।',
+    'about.missionP2': 'আমরা হাউজিং সোসাইটি অ্যাডমিনিস্ট্রেটরদের দিচ্ছি এফোর্টলেস ট্রান্সপারেন্সি, ট্রাভেলারদের ইনস্ট্যান্ট গ্লোবাল কানেক্টিভিটি এবং কনজ্যুমারদের কিউরেটেড লাইফস্টাইল প্রোডাক্টস।',
+    'about.visionTitle': 'আমাদের কর্পোরেট ভিশন',
+    'about.visionP1': 'ইনোভেশনের ভার্সেটাইল ক্যাটালিস্ট হিসেবে স্বীকৃত হওয়া, ইন্টারকানেক্টেড ডিজিটাল প্রোডাক্ট তৈরির মাধ্যমে ডে-টু-ডে লিভিং স্ট্যান্ডার্ড উন্নত করা।',
+    'about.visionP2': 'ক্লাউড ইনফ্রাস্ট্রাকচার, অটোমেটেড বিলিং এবং সিমলেস ই-সিম টেলিকমিউনিকেশন কাজে লাগিয়ে মডার্ন লিভিংয়ের জন্য একটি ইউনিফায়েড ইকোসিস্টেম তৈরি করা।',
+    'about.pillarsHeader': 'আমাদের ইকোসিস্টেম যেভাবে সিনারজিস্টিক ভ্যালু ক্রিয়েট করে',
+    'about.p1Title': 'প্রপটেক ইনফ্রাস্ট্রাকচার',
+    'about.p1Desc': 'ফিন্যান্সিয়াল ট্রান্সপারেন্সি এবং স্মার্ট অপারেশনের মাধ্যমে হাউজিং কমিউনিটি অটোমেট করা।',
+    'about.p2Title': 'গ্লোবাল রোমিং ক্লাউড',
+    'about.p2Desc': 'জিরো ফ্রিকশনে ১৫০+ দেশে মানুষ এবং স্মার্ট আইওটি ডিভাইসকে কানেক্ট করা।',
+    'about.p3Title': 'লাইফস্টাইল ইনোভেশন',
+    'about.p3Desc': 'কিউরেটেড প্রিমিয়াম কনজ্যুমার গুডস এবং রিটেল সুবিধার মাধ্যমে মডার্ন হোমগুলোকে আরও উন্নত করা।',
+
+    // Values Section
+    'values.badge': 'গাইডিং প্রিন্সিপালস',
+    'values.title': 'আমাদের কোর কর্পোরেট',
+    'values.titleHighlight': 'ভ্যালুস',
+    'values.subtitle': 'যে কোর স্ট্যান্ডার্ডগুলো আমাদের প্রোডাক্ট ডেভেলপমেন্ট, ভেঞ্চার ইনকিউবেশন এবং কাস্টমার ইন্টারঅ্যাকশনে গাইড করে।',
+    'values.v1Title': 'টেকনোলজিক্যাল এক্সিলেন্স',
+    'values.v1Desc': 'আমরা ইনটুইটিভ, রোবাস্ট এবং স্কেলেবল সফটওয়্যার সলিউশন তৈরি করি, যা জটিল মাল্টি-পার্টি অপারেশনকে সহজ করে।',
+    'values.v2Title': 'ফিন্যান্সিয়াল ইন্টিগ্রিটি ও ট্রান্সপারেন্সি',
+    'values.v2Desc': 'সোসাইটি অ্যাকাউন্টিং হোক বা ই-সিম রেট—আমরা জিরো হিডেন কস্ট এবং টোটাল অ্যাকাউন্টেবিলিটির পক্ষে।',
+    'values.v3Title': 'কাস্টমার-সেন্ট্রিক ইনোভেশন',
+    'values.v3Desc': 'আমাদের প্রোডাক্টগুলো রিয়েল-ওয়ার্ল্ডের প্রতিদিনের সমস্যা সমাধান করে—সেটা হাউজিং কমিটির পেপারওয়ার্ক হোক বা ট্রাভেল ডেটার টেনশন।',
+    'values.v4Title': 'সাসটেইনেবল লং-টার্ম গ্রোথ',
+    'values.v4Desc': 'ক্লায়েন্ট, বিল্ডিং অ্যাসোসিয়েশন, টেলিকম অপারেটর এবং ভেন্ডরদের সাথে আমরা মিউচুয়াল ট্রাস্টের ভিত্তিতে সলিড পার্টনারশিপ গড়ে তুলি।',
+
+    // Contact Section
+    'contact.badge': 'কানেক্ট উইথ আস',
+    'contact.title': 'আমাদের লিডারশিপের সাথে',
+    'contact.titleHighlight': 'যোগাযোগ করুন',
+    'contact.subtitle': 'আপনার কমিউনিটিতে স্মার্ট সোসাইটি ম্যানেজমেন্ট SaaS ডিপ্লয় করতে, ESGN-এর সাথে পার্টনারশিপ করতে অথবা লিভিংহাব লাইফস্টাইলের সাথে কোলাবোরেট করতে—আমরা আপনাদের কথা শুনতে আগ্রহী।',
+    'contact.emailHeader': 'কর্পোরেট ও জেনারেল ইমেইল',
+    'contact.supportText': 'টেক প্ল্যাটফর্ম সাপোর্ট:',
+    'contact.venturesHeader': 'অপারেটিং ভেঞ্চারস',
+    'contact.hqHeader': 'কর্পোরেট হেডকোয়ার্টারস',
+    'contact.hqName': 'লিভিংহাব কর্পোরেশন',
+    'contact.hqLoc': 'ঢাকা, বাংলাদেশ (গ্লোবাল ডিজিটাল অপারেশনস)',
+    'contact.formTitle': 'ইনকোয়ারি বা প্রপোজাল পাঠান',
+    'contact.formSubtitle': 'নিচের ফর্মটি পূরণ করুন, আমাদের কর্পোরেট রিলেশনস টিম ২৪ ঘণ্টার মধ্যে আপনার সাথে যোগাযোগ করবে।',
+    'contact.formTarget': 'ইনকোয়ারি টার্গেট / এন্টিটি:',
+    'contact.nameLabel': 'আপনার ফুল নেম *',
+    'contact.namePlaceholder': 'যেমন: মাহফুজুর রহমান',
+    'contact.phoneLabel': 'কন্টাক্ট ফোন / হোয়াটসঅ্যাপ',
+    'contact.phonePlaceholder': 'যেমন: +880 1...',
+    'contact.emailLabel': 'ইমেইল অ্যাড্রেস *',
+    'contact.emailPlaceholder': 'যেমন: name@company.com',
+    'contact.msgLabel': 'আপনার মেসেজ / কোলাবোরেশন প্রপোজাল *',
+    'contact.msgPlaceholder': 'আপনার বিল্ডিং সোসাইটি, এন্টারপ্রাইজ ই-সিম রিকোয়ারমেন্ট বা ইনকোয়ারি সম্পর্কে আমাদের জানান...',
+    'contact.btnSubmit': 'কর্পোরেট ইনকোয়ারি সাবমিট করুন',
+    'contact.btnSending': 'ইনকোয়ারি পাঠানো হচ্ছে...',
+    'contact.successTitle': 'ইনকোয়ারি রিসিভড!',
+    'contact.successMsg': 'নিম্নোক্ত বিষয়ে লিভিংহাব কর্পোরেশনে যোগাযোগ করার জন্য ধন্যবাদ:',
+    'contact.successMsgEnd': 'আমাদের লিডারশিপ টিম আপনার মেসেজটি রিভিউ করে দ্রুত যোগাযোগ করবে।',
+    'contact.btnSendAnother': 'আরেকটি ইনকোয়ারি পাঠান',
+
+    // Footer
+    'footer.corpBio': 'স্মার্ট হাউজিং সোসাইটি ম্যানেজমেন্ট, ইন্টারন্যাশনাল টেলিকম ডেটা এবং মডার্ন লাইফস্টাইল রিটেল সেক্টরে ইনোভেটিভ টেকনোলজি প্ল্যাটফর্ম ইনকিউবেট, ফাইন্যান্স এবং স্কেল করা।',
+    'footer.hq': 'কর্পোরেট হেডকোয়ার্টার: ঢাকা, বাংলাদেশ (গ্লোবাল ডিজিটাল অপারেশনস)।',
+    'footer.venturesTitle': 'অপারেটিং ভেঞ্চারস',
+    'footer.linksTitle': 'কর্পোরেট লিংকস',
+    'footer.contactTitle': 'কন্টাক্ট চ্যানেল',
+    'footer.aboutLink': 'কর্পোরেশন সম্পর্কে',
+    'footer.portfolioLink': 'ভেঞ্চারস পোর্টফোলিও',
+    'footer.principlesLink': 'গাইডিং প্রিন্সিপালস',
+    'footer.inquiriesLink': 'লিডারশিপ ও ইনকোয়ারি',
+    'footer.backToTop': 'ব্যাক টু টপ',
+    'footer.copyright': 'সকল স্বত্ব সংরক্ষিত।',
+    'footer.privacy': 'প্রাইভেসি পলিসি',
+    'footer.terms': 'টার্মস অফ সার্ভিস',
+  }
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguageState] = useState<Language>(() => {
+    const saved = localStorage.getItem('livinghub_lang');
+    return (saved === 'bn' || saved === 'en') ? saved : 'en';
+  });
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('livinghub_lang', lang);
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const t = (key: string): string => {
+    const langDict = translations[language];
+    return (langDict as Record<string, string>)[key] || (translations.en as Record<string, string>)[key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};

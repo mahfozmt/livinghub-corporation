@@ -1,27 +1,30 @@
 import React from 'react';
 import { ShieldCheck, Cpu, Award, HeartHandshake, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ValuesSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const values = [
     {
       icon: <Cpu className="w-6 h-6 text-[#0062eb]" />,
-      title: "Technological Excellence",
-      desc: "We build intuitive, robust, and scalable software solutions designed to simplify complex multi-party operations."
+      title: t('values.v1Title'),
+      desc: t('values.v1Desc')
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-emerald-600" />,
-      title: "Financial Integrity & Transparency",
-      desc: "Whether in society accounting or transparent eSIM rates, we stand firmly for zero hidden costs and total accountability."
+      title: t('values.v2Title'),
+      desc: t('values.v2Desc')
     },
     {
       icon: <Award className="w-6 h-6 text-amber-600" />,
-      title: "Customer-Centric Innovation",
-      desc: "Our products solve real-world daily headaches, from tedious housing committee paperwork to stressful travel data searches."
+      title: t('values.v3Title'),
+      desc: t('values.v3Desc')
     },
     {
       icon: <HeartHandshake className="w-6 h-6 text-indigo-600" />,
-      title: "Sustainable Long-Term Growth",
-      desc: "We build solid partnerships with clients, building associations, telecom operators, and vendors based on mutual trust."
+      title: t('values.v4Title'),
+      desc: t('values.v4Desc')
     }
   ];
 
@@ -31,13 +34,13 @@ export const ValuesSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#0062eb] text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#0062eb]" />
-            <span>Guiding Principles</span>
+            <span>{t('values.badge')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a1936] tracking-tight mb-4">
-            Our Core Corporate <span className="text-[#0062eb]">Values</span>
+            {t('values.title')} <span className="text-[#0062eb]">{t('values.titleHighlight')}</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            The fundamental standards that drive our product development, venture incubation, and customer interactions across all entities.
+            {t('values.subtitle')}
           </p>
         </div>
 

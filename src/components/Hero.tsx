@@ -1,7 +1,10 @@
 import React from 'react';
-import { ArrowUpRight, Building2, Globe2, ShoppingBag, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Building2, Globe2, ShoppingBag, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden light-mesh-bg border-b border-slate-100">
       {/* Decorative subtle background gradient glows */}
@@ -13,18 +16,18 @@ export const Hero: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#0062eb] text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#0062eb]" />
-            <span>Multi-Sector Technology &amp; Commerce Holding</span>
+            <span>{t('hero.badge')}</span>
           </div>
 
           {/* Main Title with Logo Brand Colors */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0a1936] leading-[1.15] mb-6">
-            Pioneering <span className="text-[#0062eb]">Smart Living</span>,{' '}
-            <span className="text-[#00b4d8]">Global Telecom</span> &amp; Modern Lifestyle
+            {t('hero.title1')} <span className="text-[#0062eb]">{t('hero.titleSmartLiving')}</span>,{' '}
+            <span className="text-[#00b4d8]">{t('hero.titleGlobalTelecom')}</span> {t('hero.titleModernLifestyle')}
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
-            <strong className="text-[#0a1936] font-semibold">Livinghub Corporation</strong> is the parent enterprise driving forward-looking subsidiaries in smart community automation, borderless digital telecom, and modern consumer commerce.
+            <strong className="text-[#0a1936] font-semibold">{t('hero.description1')}</strong> {t('hero.description2')}
           </p>
 
           {/* Primary Action Buttons */}
@@ -33,14 +36,14 @@ export const Hero: React.FC = () => {
               href="#entities" 
               className="px-7 py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#0062eb] to-[#00b4d8] hover:from-[#004ec4] hover:to-[#0284c7] shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center gap-2 group active:scale-95"
             >
-              <span>Explore Subsidiaries</span>
+              <span>{t('hero.ctaExplore')}</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
             <a 
               href="#about" 
               className="px-7 py-3.5 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all duration-200"
             >
-              About the Holding
+              {t('hero.ctaAbout')}
             </a>
           </div>
         </div>
@@ -53,7 +56,7 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col items-center">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#0062eb] text-[11px] font-bold uppercase tracking-wider mb-3 border border-blue-200/80 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#0062eb] animate-pulse"></span>
-              <span>Parent Holding Enterprise</span>
+              <span>{t('hero.treeParent')}</span>
             </div>
 
             <div className="white-card px-8 py-4 rounded-2xl border-slate-300 shadow-lg flex items-center justify-center bg-white/95 backdrop-blur-sm relative z-10 hover:border-blue-400 transition-all hover:scale-[1.02]">
@@ -106,18 +109,18 @@ export const Hero: React.FC = () => {
                     />
                   </div>
                   <span className="text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-blue-50 text-[#0062eb] border border-blue-200 flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5" /> SaaS &amp; PropTech
+                    <Building2 className="w-3.5 h-3.5" /> {t('hero.techBadge')}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-[#0a1936] group-hover:text-[#0062eb] transition-colors mb-2">
-                  Livinghub Technologies
+                  {t('hero.techTitle')}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Automated smart housing society &amp; building management ERP for treasurers, residents, and security.
+                  {t('hero.techDesc')}
                 </p>
               </div>
               <div className="text-xs font-bold text-[#0062eb] flex items-center gap-1.5 pt-3 border-t border-slate-100">
-                <span>Explore Tech Platform</span>
+                <span>{t('hero.techCta')}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </a>
@@ -137,18 +140,18 @@ export const Hero: React.FC = () => {
                     />
                   </div>
                   <span className="text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5">
-                    <Globe2 className="w-3.5 h-3.5" /> Global Telecom
+                    <Globe2 className="w-3.5 h-3.5" /> {t('hero.esgnBadge')}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-[#0a1936] group-hover:text-emerald-600 transition-colors mb-2">
-                  ESGN (eSIM Global)
+                  {t('hero.esgnTitle')}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Instant worldwide eSIM mobile data and roaming across 150+ countries without physical SIM cards.
+                  {t('hero.esgnDesc')}
                 </p>
               </div>
               <div className="text-xs font-bold text-emerald-600 flex items-center gap-1.5 pt-3 border-t border-slate-100">
-                <span>Discover Global eSIM</span>
+                <span>{t('hero.esgnCta')}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </a>
@@ -168,18 +171,18 @@ export const Hero: React.FC = () => {
                     />
                   </div>
                   <span className="text-[11px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1.5">
-                    <ShoppingBag className="w-3.5 h-3.5" /> Upcoming E-Commerce
+                    <ShoppingBag className="w-3.5 h-3.5" /> {t('hero.lifestyleBadge')}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-[#0a1936] group-hover:text-amber-600 transition-colors mb-2">
-                  Livinghub Lifestyle
+                  {t('hero.lifestyleTitle')}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Curated everyday lifestyle essentials and smart living products designed for modern homes.
+                  {t('hero.lifestyleDesc')}
                 </p>
               </div>
               <div className="text-xs font-bold text-amber-600 flex items-center gap-1.5 pt-3 border-t border-slate-100">
-                <span>Preview Brand Vision</span>
+                <span>{t('hero.lifestyleCta')}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </a>
