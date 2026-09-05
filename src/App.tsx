@@ -2,6 +2,7 @@ import React from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { VentureCarousel } from './components/VentureCarousel';
 import { EntitiesSection } from './components/EntitiesSection';
 import { AboutSection } from './components/AboutSection';
 import { ValuesSection } from './components/ValuesSection';
@@ -15,6 +16,7 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Hero />
+          <VentureCarousel />
           <EntitiesSection />
           <AboutSection />
           <ValuesSection />

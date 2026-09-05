@@ -58,3 +58,22 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Carousel autoplay progress bar */
+@keyframes lh-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.lh-progress {
+  animation: lh-progress var(--lh-progress-duration, 6500ms) linear forwards;
+}
+.lh-progress[data-paused='true'] {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lh-progress { animation: none; width: 100%; }
+}
+
+/* Hide the thumbnail rail scrollbar without losing scrollability */
+.lh-no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.lh-no-scrollbar::-webkit-scrollbar { display: none; }
