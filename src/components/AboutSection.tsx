@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Compass, Sparkles, Building, Globe, Zap } from 'lucide-react';
+import { Target, Compass, Sparkles, Building, Globe, Zap, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export const AboutSection: React.FC = () => {
@@ -58,7 +58,7 @@ export const AboutSection: React.FC = () => {
           <h4 className="text-lg font-bold text-[#0a1936] mb-6 text-center">
             {t('about.pillarsHeader')}
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0062eb] flex items-center justify-center mx-auto mb-3">
                 <Building className="w-5 h-5" />
@@ -86,6 +86,16 @@ export const AboutSection: React.FC = () => {
               <h5 className="text-sm font-bold text-[#0a1936] mb-1">{t('about.p3Title')}</h5>
               <p className="text-xs text-slate-500">
                 {t('about.p3Desc')}
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-3">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h5 className="text-sm font-bold text-[#0a1936] mb-1">{t('about.p4Title')}</h5>
+              <p className="text-xs text-slate-500">
+                {t('about.p4Desc')}
               </p>
             </div>
           </div>

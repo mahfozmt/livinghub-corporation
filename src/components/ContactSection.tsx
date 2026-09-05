@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, MessageSquare, Building2, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, MessageSquare, Building2, Loader2, AlertCircle, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-// You can create a free access key at https://web3forms.com/ (takes 10 seconds, delivers to info@livinghubcorp.com)
-// Or replace with your Formspree endpoint if preferred
 const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; 
 
 export const ContactSection: React.FC = () => {
@@ -24,7 +22,6 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     setErrorMessage(null);
 
-    // If a custom Web3Forms key is configured, send via API
     if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== "YOUR_ACCESS_KEY_HERE") {
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -57,7 +54,6 @@ export const ContactSection: React.FC = () => {
         setIsSubmitting(false);
       }
     } else {
-      // Demo / Instant simulation mode with direct mailto fallback support
       setTimeout(() => {
         setIsSubmitting(false);
         setSubmitted(true);
@@ -108,6 +104,7 @@ export const ContactSection: React.FC = () => {
                     <div>• Livinghub Technologies (<a href="https://www.livinghub.tech/" target="_blank" rel="noopener noreferrer" className="text-[#0062eb] hover:underline">livinghub.tech</a>)</div>
                     <div>• ESGN Global (<a href="https://esimglobalnetworks.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">esimglobalnetworks.com</a>)</div>
                     <div>• Livinghub Lifestyle (<a href="https://livinghublifestyle.com/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">livinghublifestyle.com</a>)</div>
+                    <div>• Corporate & Gov IT Solutions (<a href="#b2b-gov" className="text-indigo-600 hover:underline">B2B & Public Sector Services</a>)</div>
                   </div>
                 </div>
               </div>
@@ -170,13 +167,13 @@ export const ContactSection: React.FC = () => {
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                       {t('contact.formTarget')}
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {['Livinghub Corp', 'Livinghub Tech', 'ESGN Global', 'Lifestyle'].map((entity) => (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+                      {['Livinghub Corp', 'Livinghub Tech', 'ESGN Global', 'Lifestyle', 'B2B & Gov Solutions'].map((entity) => (
                         <button
                           key={entity}
                           type="button"
                           onClick={() => setSelectedEntity(entity)}
-                          className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all text-center ${
+                          className={`px-2.5 py-2 rounded-xl text-xs font-bold border transition-all text-center ${
                             selectedEntity === entity
                               ? 'bg-blue-50 border-[#0062eb] text-[#0062eb] shadow-sm ring-1 ring-[#0062eb]'
                               : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'

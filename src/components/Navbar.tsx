@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Building2, Globe2, ShoppingBag, ChevronRight, Languages, Check, ChevronDown } from 'lucide-react';
+import { Menu, X, Building2, Globe2, ShoppingBag, ShieldCheck, ChevronRight, Languages, Check, ChevronDown } from 'lucide-react';
 import { useLanguage, Language } from '../context/LanguageContext';
 
 export const Navbar: React.FC = () => {
@@ -51,23 +51,26 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-50 border border-slate-200/80 rounded-full px-4 py-1.5 shadow-inner">
-            <a href="#about" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3.5 py-1.5 rounded-full hover:bg-white transition-all">
+          <nav className="hidden xl:flex items-center gap-1 bg-slate-50 border border-slate-200/80 rounded-full px-4 py-1.5 shadow-inner">
+            <a href="#about" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3 py-1.5 rounded-full hover:bg-white transition-all">
               {t('nav.about')}
             </a>
-            <a href="#entities" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3.5 py-1.5 rounded-full hover:bg-white transition-all">
+            <a href="#entities" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3 py-1.5 rounded-full hover:bg-white transition-all">
               {t('nav.ventures')}
             </a>
-            <a href="#livinghub-tech" className="text-xs font-semibold text-[#0062eb] hover:text-[#004ec4] px-3.5 py-1.5 rounded-full hover:bg-blue-50 transition-all flex items-center gap-1.5">
+            <a href="#livinghub-tech" className="text-xs font-semibold text-[#0062eb] hover:text-[#004ec4] px-3 py-1.5 rounded-full hover:bg-blue-50 transition-all flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5 text-[#0062eb]" /> {t('nav.tech')}
             </a>
-            <a href="#esgn" className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 px-3.5 py-1.5 rounded-full hover:bg-emerald-50 transition-all flex items-center gap-1.5">
+            <a href="#esgn" className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 px-3 py-1.5 rounded-full hover:bg-emerald-50 transition-all flex items-center gap-1.5">
               <Globe2 className="w-3.5 h-3.5 text-emerald-600" /> {t('nav.esgn')}
             </a>
-            <a href="#lifestyle" className="text-xs font-semibold text-amber-600 hover:text-amber-700 px-3.5 py-1.5 rounded-full hover:bg-amber-50 transition-all flex items-center gap-1.5">
+            <a href="#lifestyle" className="text-xs font-semibold text-amber-600 hover:text-amber-700 px-3 py-1.5 rounded-full hover:bg-amber-50 transition-all flex items-center gap-1.5">
               <ShoppingBag className="w-3.5 h-3.5 text-amber-600" /> {t('nav.lifestyle')}
             </a>
-            <a href="#values" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3.5 py-1.5 rounded-full hover:bg-white transition-all">
+            <a href="#b2b-gov" className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 px-3 py-1.5 rounded-full hover:bg-indigo-50 transition-all flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" /> {t('nav.b2b')}
+            </a>
+            <a href="#values" className="text-xs font-semibold text-slate-700 hover:text-[#0062eb] px-3 py-1.5 rounded-full hover:bg-white transition-all">
               {t('nav.values')}
             </a>
           </nav>
@@ -145,7 +148,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu & Language Toggle */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 xl:hidden">
             {/* Quick Mobile Lang Switcher Button */}
             <button
               onClick={() => setLanguage(language === 'en' ? 'bn' : 'en')}
@@ -168,7 +171,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown */}
         {isOpen && (
-          <div className="lg:hidden mt-3 p-4 bg-white border border-slate-200 rounded-2xl shadow-xl flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="xl:hidden mt-3 p-4 bg-white border border-slate-200 rounded-2xl shadow-xl flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
             {/* Mobile Language Switcher Row */}
             <div className="flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200/80 rounded-xl mb-1">
               <span className="text-xs font-bold text-slate-600 flex items-center gap-1.5">
@@ -232,6 +235,13 @@ export const Navbar: React.FC = () => {
               className="px-3 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-50 rounded-lg flex items-center gap-2"
             >
               <ShoppingBag className="w-4 h-4 text-amber-600" /> {t('nav.lifestyleFull')}
+            </a>
+            <a
+              href="#b2b-gov"
+              onClick={() => setIsOpen(false)}
+              className="px-3 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-50 rounded-lg flex items-center gap-2"
+            >
+              <ShieldCheck className="w-4 h-4 text-indigo-600" /> {t('nav.b2bFull')}
             </a>
             <a 
               href="#values" 
