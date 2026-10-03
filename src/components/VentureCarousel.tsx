@@ -23,9 +23,9 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     id: 'tech-app',
-    image: './media/Website-2-1.png',
+    image: './media/banner-livinghub-proptech.jpg',
     fit: 'cover',
-    bg: 'bg-[#1b1240]',
+    bg: 'bg-[#0a1936]',
     href: 'https://www.livinghub.tech/',
     external: true,
     domain: 'livinghub.tech',
@@ -38,9 +38,9 @@ const SLIDES: Slide[] = [
   },
   {
     id: 'tech-access',
-    image: './media/about-4.jpg',
+    image: './media/banner-livinghub-mobile.jpg',
     fit: 'cover',
-    bg: 'bg-slate-900',
+    bg: 'bg-[#0a1936]',
     href: 'https://www.livinghub.tech/',
     external: true,
     domain: 'livinghub.tech',
@@ -53,9 +53,9 @@ const SLIDES: Slide[] = [
   },
   {
     id: 'esim-brand',
-    image: './media/esim-og.jpg',
+    image: './media/banner-esim-roaming.jpg',
     fit: 'cover',
-    bg: 'bg-[#12358f]',
+    bg: 'bg-[#04122b]',
     href: 'https://esimglobalnetworks.com/',
     external: true,
     domain: 'esimglobalnetworks.com',
@@ -113,9 +113,9 @@ const SLIDES: Slide[] = [
   },
   {
     id: 'corp-team',
-    image: './media/hero-1-1024x683.jpg',
+    image: './media/banner-corporate-synergy.jpg',
     fit: 'cover',
-    bg: 'bg-slate-800',
+    bg: 'bg-[#04122b]',
     href: '#about',
     external: false,
     domain: 'livinghubcorp.com',
